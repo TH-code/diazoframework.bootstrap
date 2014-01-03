@@ -26,6 +26,7 @@
                           <xsl:attribute name="class">btn</xsl:attribute>
                       </xsl:otherwise>
                   </xsl:choose>
+                  <xsl:copy-of select="@name" />
                   <xsl:value-of select="./@value"/>
               </button>
           </xsl:when>
