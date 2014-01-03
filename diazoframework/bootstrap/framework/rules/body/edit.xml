@@ -27,10 +27,19 @@
   <drop css:content=".contentActions .arrowDownAlternative"/>
 
   <replace css:content=".actionSeparator">
-      <li class="nav-header">
-          <xsl:apply-templates select="./div/*"/>
-      </li>
       <li class="divider"></li>
+      <xsl:choose>
+          <xsl:when test="./div">
+              <li class="nav-header">
+                  <xsl:apply-templates select="./div/*"/>
+              </li>
+          </xsl:when>
+          <xsl:otherwise>
+              <li>
+                  <xsl:apply-templates select="./*"/>
+              </li>
+          </xsl:otherwise>
+      </xsl:choose>
   </replace>
 
   <replace css:content="#edit-bar > .contentActions">
