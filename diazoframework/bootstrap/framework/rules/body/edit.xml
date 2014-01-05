@@ -26,10 +26,32 @@
 
   <drop css:content=".contentActions .arrowDownAlternative"/>
 
-  <replace css:content=".actionSeparator">
-      <li class="nav-header">
-          <xsl:apply-templates select="./div/*"/>
+  <replace css:content=".actionMenuSelected">
+      <li class="active">
+          <xsl:copy-of select="."/>
       </li>
+  </replace>
+
+  <replace css:content=".actionSeparator">
+      <xsl:choose>
+          <xsl:when css:test="#folderDefaultPageDisplay">
+              <li class="active">
+                  <a>
+                      <xsl:copy-of select="./div/*"/>
+                  </a>
+              </li>
+          </xsl:when>
+          <xsl:when test="./div">
+              <li class="nav-header">
+                  <xsl:apply-templates select="./div/*"/>
+              </li>
+          </xsl:when>
+          <xsl:otherwise>
+              <li>
+                  <xsl:apply-templates select="./*"/>
+              </li>
+          </xsl:otherwise>
+      </xsl:choose>
       <li class="divider"></li>
   </replace>
 
